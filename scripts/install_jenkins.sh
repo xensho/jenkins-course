@@ -1,6 +1,15 @@
 #!/bin/bash
 
-# this script is only tested on ubuntu xenial
+# Updating the system sowtware and install dependencies
+apt-get update
+
+apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+
 
 # install docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -9,7 +18,7 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 apt-get update
-apt-get install docker-ce docker-ce-cli containerd.io
+apt-get install -y docker-ce docker-ce-cli containerd.io
 systemctl enable docker
 systemctl start docker
 usermod -aG docker ubuntu
